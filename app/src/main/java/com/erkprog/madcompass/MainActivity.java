@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.erkprog.madcompass.model.CompassModel;
+
 public class MainActivity extends AppCompatActivity {
   TextView tvTest;
 
@@ -17,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     tvTest = findViewById(R.id.testtv);
 
     CompassViewModel model = ViewModelProviders.of(this).get(CompassViewModel.class);
-    model.getOrientState().observe(this, new Observer<CompassModel>() {
+    model.getData().observe(this, new Observer<CompassModel>() {
       @Override
       public void onChanged(@Nullable CompassModel orientState) {
         if (orientState != null) {

@@ -1,6 +1,6 @@
-package com.erkprog.madcompass;
+package com.erkprog.madcompass.model;
 
-class CompassModel {
+public class CompassModel {
   private String orientStr;
 
   public String getOrientStr() {
