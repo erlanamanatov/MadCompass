@@ -19,6 +19,7 @@ public class CompassViewModel extends AndroidViewModel implements SensorHelper.S
   }
 
   private MutableLiveData<CompassModel> liveData;
+  private CompassModel mCompassModel;
 
   public LiveData<CompassModel> getData() {
     if (liveData == null) {
@@ -30,6 +31,7 @@ public class CompassViewModel extends AndroidViewModel implements SensorHelper.S
 
   private void loadState() {
     Context context = getApplication();
+    mCompassModel = new CompassModel();
     mSensorHelper = new SensorHelper(context, this);
     mSensorHelper.start();
   }
@@ -44,12 +46,13 @@ public class CompassViewModel extends AndroidViewModel implements SensorHelper.S
   @Override
   public void onRotationChanged(float azimuth, float roll, float pitch) {
     String str = ((int) azimuth) + "° ";
-    CompassModel newState = new CompassModel();
-    newState.setOrientStr(str);
-    liveData.postValue(newState);
+    mCompassModel.setOrientStr(str);
+    liveData.postValue(mCompassModel);
   }
 
   @Override
   public void onMagneticFieldChanged(float value) {
+    mCompassModel.setMagn(Float.toString(value));
+    liveData.postValue(mCompassModel);
   }
 }
