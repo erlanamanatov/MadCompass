@@ -10,20 +10,22 @@ import android.widget.TextView;
 import com.erkprog.madcompass.model.CompassModel;
 
 public class MainActivity extends AppCompatActivity {
-  TextView tvTest;
+  TextView tvAzimut, tvMagnet;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    tvTest = findViewById(R.id.testtv);
+    tvAzimut = findViewById(R.id.testtv);
+    tvMagnet = findViewById(R.id.tvMagnet);
 
     CompassViewModel model = ViewModelProviders.of(this).get(CompassViewModel.class);
     model.getData().observe(this, new Observer<CompassModel>() {
       @Override
       public void onChanged(@Nullable CompassModel orientState) {
         if (orientState != null) {
-          tvTest.setText(orientState.getOrientStr());
+          tvAzimut.setText(orientState.getOrientStr());
+          tvMagnet.setText(orientState.getMagn());
         }
       }
     });
