@@ -1,22 +1,22 @@
 package com.erkprog.madcompass.model;
 
 public class CompassModel {
-  private String orientStr;
-  private String magn;
+  private float magneticField;
+  private float azimuth;
 
-  public String getOrientStr() {
-    return orientStr;
+  public float getAzimuth() {
+    return azimuth;
   }
 
-  public void setOrientStr(String orientStr) {
-    this.orientStr = orientStr;
+  public void setAzimuth(float azimuth) {
+    this.azimuth = azimuth;
   }
 
-  public String getMagn() {
-    return magn;
+  public float getMagneticField() {
+    return magneticField;
   }
 
-  public void setMagn(String magn) {
-    this.magn = magn;
+  public void setMagneticField(float magneticField) {
+    this.magneticField = magneticField;
   }
 }
