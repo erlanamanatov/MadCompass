@@ -29,8 +29,7 @@ public class SensorHelper implements SensorEventListener {
   private float[] R1 = new float[9];
   private float[] I1 = new float[9];
 
-  int mScreenRotation;
-  Display mDisplay;
+  private Display mDisplay;
 
   public interface SensorHelperListener {
     void onRotationChanged(float azimuth, float roll, float pitch);
@@ -88,8 +87,8 @@ public class SensorHelper implements SensorEventListener {
         int x_axis = SensorManager.AXIS_X;
         int y_axis = SensorManager.AXIS_Y;
 
-        mScreenRotation = mDisplay.getRotation();
-        switch (mScreenRotation) {
+        int screenRotation = mDisplay.getRotation();
+        switch (screenRotation) {
           case (Surface.ROTATION_90):
             x_axis = SensorManager.AXIS_Y;
             y_axis = SensorManager.AXIS_MINUS_X;
