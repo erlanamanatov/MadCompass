@@ -39,17 +39,17 @@ public class MainActivity extends AppCompatActivity {
   private void initViews() {
     tvAzimut = findViewById(R.id.testtv);
     img = findViewById(R.id.comp_face);
-    img.setPivotX((float) img.getWidth() / 2);
-    img.setPivotY((float) img.getHeight() / 2);
   }
 
   private void showAzimuth(float azimuth) {
-    String azimuthStr = String.format(Locale.UK, "%f °", azimuth);
+    String azimuthStr = String.format(Locale.UK, "%d °", Math.round(azimuth));
     tvAzimut.setText(azimuthStr);
   }
 
   private void rotateImg(float azimuth) {
     float diff = curDir - azimuth;
+    img.setPivotX((float) img.getWidth() / 2);
+    img.setPivotY((float) img.getHeight() / 2);
     img.setRotation(diff);
   }
 }
