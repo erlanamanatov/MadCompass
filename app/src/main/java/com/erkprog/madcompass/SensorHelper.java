@@ -89,14 +89,14 @@ public class SensorHelper implements SensorEventListener {
 
         int screenRotation = mDisplay.getRotation();
         switch (screenRotation) {
-          case (Surface.ROTATION_90):
+          case Surface.ROTATION_90:
             x_axis = SensorManager.AXIS_Y;
             y_axis = SensorManager.AXIS_MINUS_X;
             break;
-          case (Surface.ROTATION_180):
+          case Surface.ROTATION_180:
             y_axis = SensorManager.AXIS_MINUS_Y;
             break;
-          case (Surface.ROTATION_270):
+          case Surface.ROTATION_270:
             x_axis = SensorManager.AXIS_MINUS_Y;
             y_axis = SensorManager.AXIS_X;
             break;
@@ -107,7 +107,9 @@ public class SensorHelper implements SensorEventListener {
         SensorManager.remapCoordinateSystem(R1,
             x_axis, y_axis,
             remappedMatrix);
+
         SensorManager.getOrientation(remappedMatrix, mOrientation);
+
         float azimuth = (float) Math.toDegrees(mOrientation[0]);
         azimuth = (azimuth + 360) % 360;
         float pitch = (float) Math.toDegrees(mOrientation[1]);

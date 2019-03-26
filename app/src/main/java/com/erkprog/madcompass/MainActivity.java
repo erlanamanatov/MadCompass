@@ -15,7 +15,6 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
   TextView tvAzimut;
   ImageView img;
-  float curDir;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +25,9 @@ public class MainActivity extends AppCompatActivity {
     CompassViewModel model = ViewModelProviders.of(this).get(CompassViewModel.class);
     model.getData().observe(this, new Observer<CompassModel>() {
       @Override
-      public void onChanged(@Nullable CompassModel orientState) {
-        if (orientState != null) {
-          float azimuth = orientState.getAzimuth();
+      public void onChanged(@Nullable CompassModel model) {
+        if (model != null) {
+          float azimuth = model.getAzimuth();
           rotateImg(azimuth);
           showAzimuth(azimuth);
         }
@@ -47,10 +46,9 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void rotateImg(float azimuth) {
-    float diff = curDir - azimuth;
     img.setPivotX((float) img.getWidth() / 2);
     img.setPivotY((float) img.getHeight() / 2);
-    img.setRotation(diff);
+    img.setRotation(-azimuth);
   }
 }
 
